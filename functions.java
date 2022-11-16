@@ -16,6 +16,15 @@ public class functions {
         System.out.println("the overloading sum with different data types : "+sum(5,1.2));
         System.out.println("check if the given number is prime or not :"+prime(1));
         primeRange(a);
+        System.out.println("conversion from binary to decimal");
+        binarytodecimal();
+        powerfun(2,5);
+        dectobin();
+        bintoany();
+        dectoany();
+        even();
+        digitsum();
+        System.out.println("palindrome value :"+pallindrome(131));
     }
     public static int sum(int a,int b){
         System.out.println("the sum of number is "+(a+b));
@@ -86,5 +95,129 @@ public class functions {
                 System.out.println("prime : "+i);
             }
         }
+    }
+    public static void binarytodecimal(){
+        System.out.println("enter a number in binary format :");
+        int b=s.nextInt();
+        int temp=b;
+        int dec=0;
+        int counter=0;
+        while(temp > 0){
+            //looping from the main variable and decrementing it and checking 
+            //or terminating it if the value gets less than or equal to 0 
+            b=temp%10;
+            //extracting the last digit of the value 
+            dec+=b*(int)powerfun(2,counter);
+            //multiplying the last digit with 2 to the power of counter
+            //adding the converted digit 
+            counter++;
+            //incrementing the counter 
+            temp/=10;
+            //decrementing the main value to avail for the condition of while loop
+        }
+        System.out.println(" "+dec);
+    }
+    public static void dectobin(){
+        System.out.println("enter a decimal number to convert");
+        int dec=s.nextInt();
+        int lastdigit=0;
+        int bin=0;
+        int counter=0;
+        while(dec >0 ){
+            lastdigit=dec % 2;
+            //get the last digit
+            bin+=lastdigit*powerfun(10,counter);
+            //we will multiply the last digit with the power of counter to base to 10
+            // because the base number of decimal is 10
+
+            dec/=2;
+            counter++;
+        }
+        System.out.println("the binary value of given is "+bin);
+    }
+    public static int powerfun(int a,int b){
+        int temp=1;
+        while(b>0){
+            temp*=a;
+            b--;
+        }
+        return temp;
+    }
+    public static void bintoany(){
+        System.out.println("enter number in bin format");
+        int bin=s.nextInt();
+        System.out.println("enter the base value of the number system to convert");
+        int base=s.nextInt();
+        int value=0;
+        int counter=0;
+        while(bin > 0){
+            int rem=bin % 10;
+            value=value+rem*powerfun(2,counter);
+            counter++;
+            bin/=base;
+        }
+        System.out.println("the value for the given number is "+value);
+    }
+    public static void dectoany(){
+        System.out.println("enter a number in decimal format");
+        int dec=s.nextInt();
+        System.out.println("enter your base of the number system to convert");
+        int base=s.nextInt();
+        int counter=0;
+        int value=0;
+        while(dec > 0){
+            int rem=dec % base;
+            value=value+rem*powerfun(10,counter);
+            counter++;
+            dec/=base;
+        }
+        System.out.println("the value of the dec number in the given base number is "+value);
+    }
+    public static void practice1(){
+        System.out.println("enter three numbers");
+        int a=s.nextInt();
+        int b=s.nextInt();
+        int c=s.nextInt();
+        int sum=a+b+c;
+        System.out.println(" the avg value of the given is :"+sum/3);
+        
+    }
+    public static boolean isEven(int n){
+        boolean bool=true;
+        if(n % 2 !=0){
+            bool=false;
+        }
+        return bool;
+    }
+    public static void even(){
+        System.out.println("enter a number");
+        int n=s.nextInt();
+        System.out.println("given values is even " +isEven(n));
+    }
+    public static boolean pallindrome(int n){
+        int o=n;
+        boolean bool=true;
+        int value=0;
+        while(n > 0 ){
+            int rem=n%10;
+            value=value*10+rem;
+            
+            n/=10;
+        }
+        if(value != o){
+            bool=false;
+        }
+        return bool;
+    }
+    public static void digitsum(){
+        System.out.println("enter a number to add the digits");
+        int n=s.nextInt();
+        int sum=0;
+        while(n>0){
+            int lastdigit=n%10;
+            sum+=lastdigit;
+            n/=10;
+        }
+        System.out.println("the sum of digits are "+sum);
     }
 }
