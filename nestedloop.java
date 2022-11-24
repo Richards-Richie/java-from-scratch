@@ -17,6 +17,8 @@ public class nestedloop {
         patter9_2();
         pattern10();
         pattern11();
+        pattern12();
+        pattern13();
     }
     public static void pattern1(){
         System.out.println("pattern1");
@@ -235,6 +237,55 @@ public class nestedloop {
             }
             
             for(int j=0;j<5;j++){
+                System.out.print(" * ");
+            }
+            System.out.println();
+        }
+    }
+    public static void pattern12(){
+        int n=7;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<(n-i);j++){
+                System.out.print("   ");
+            }
+            for(int j=0;j<n;j++){
+                if(i==0 || i==n-1 || j==0|| j==n-1 ){
+                    System.out.print(" * ");
+                }else{
+                    System.out.print("   ");
+                }
+            }
+            System.out.println();
+        }
+    }
+    public static void pattern13(){
+        int n=4;
+        //outer loop has to run 4 times because the after the 4th line the 
+        //the remaining  is just the reverse of the first half
+
+        //first half
+        for(int i=0;i<n;i++){
+            //printing the spaces for the first half
+            for(int j=0;j<=n-i-1;j++){
+                System.out.print("   ");
+            }
+            //the stars  are in odd in number so odd number is either 2x+1 or 2x-1
+            //since i start from 0 2x+1 is used 
+            for(int j=0;j<2*i+1;j++){
+                System.out.print(" * ");
+            }
+            System.out.println();
+        }
+        //for reversing the the 2nd half just run the outer loop from n to 0
+        //second half
+        for(int i=n;i>0;i--){
+            //printing the spaces for the second half
+            for(int j=0;j<=n-i-1;j++){
+                System.out.print("   ");
+            }
+            //the stars  are in odd in number so odd number is either 2x+1 or 2x-1
+            //since i start from 0 2x+1 is used 
+            for(int j=0;j<2*i+1;j++){
                 System.out.print(" * ");
             }
             System.out.println();
