@@ -25,6 +25,9 @@ public class arrays {
         reverse();
         pairs();
         printSubarray();
+        prefixsumarray();
+        kadans();
+        trappingRainWater();
     }
     public static int linearsearch(){
         int []arr={2,4,6,8,10,12,14,16};
@@ -122,7 +125,7 @@ public class arrays {
             for(int j=i;j<arr.length;j++){
                 for(int k=i;k<=j;k++){
                     sum+=arr[k];
-                    System.out.print(arr[k]+" , ");
+                    System.out.print(arr[k]+" , ");                              
                 }
                 if(maxsum<sum){
                     maxsum=sum;
@@ -136,5 +139,94 @@ public class arrays {
             System.out.println();
         }
         System.out.println("the max sum and min sum is:"+maxsum+" , "+minsum);
+    }
+    public static void prefixsumarray(){
+        int []arr={2,4,6,8,10};
+        int []prefixarr=new int[arr.length];
+        prefixarr[0]=2;
+        int prefixsum=0;
+        int maxsum=Integer.MIN_VALUE;
+        int minsum=Integer.MAX_VALUE;
+        for(int i=1;i<prefixarr.length;i++){
+            prefixarr[i]=prefixarr[i-1]+arr[i];
+        }
+        for(int i=0;i<arr.length;i++){
+            int start=i;
+            for(int j=i;j<arr.length;j++){
+                int end=j;
+                // for(int k=i;k<=j;k++){
+                //     System.out.print(arr[k]+" , ");
+                // }
+                //insted of the for loop we will use the prefix formula here 
+                if(start == 0){
+                    prefixsum=prefixarr[end];
+                    maxsum=(maxsum<prefixsum)?prefixsum:maxsum;
+                    minsum=(minsum > prefixsum)?prefixsum:minsum;
+                }
+                else{
+                    prefixsum=prefixarr[end]-prefixarr[start-1];
+                    maxsum=(maxsum<prefixsum)?prefixsum:maxsum;
+                    minsum=(minsum > prefixsum)?prefixsum:minsum;
+                }
+                //the start and end values will get calculated in every iteratrions of i and j
+                
+            }
+            System.out.println("prefixsum is "+prefixsum );
+        }
+    }
+    public static void kadans(){
+        int []arr={-2,-3,-4,-1,-2,-1,-5,-3};
+        int cs=0;
+        int ms=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            cs= (cs+arr[i])>0?cs+arr[i]:0;
+            ms=(ms > cs)?ms:cs;
+        }
+        if(ms == 0){
+            ms=Integer.MIN_VALUE;
+            for(int i=0;i<arr.length;i++){
+                ms=(ms < arr[i])?arr[i]:ms;
+            }
+        }
+        System.out.println(cs+" , "+ms);
+    }
+    public static void trappingRainWater(){
+        int []arr={4,2,0,6,3,2,5};
+        // let us take two arrays which calculates left and right boundaries
+        int []lmb=new int[arr.length];
+        int []rmb=new int[arr.length];
+        //trapped water level initallly be 0
+        int twl=0;
+        //left max boundary is calculated from left to right with first left boundary
+        //being arr[0]
+        //the remaining lmx boundary is calculated by its immediate left value(lmb[i-1])
+        //is compared with its value(arr[i]) 
+        //the max between the are considered as lmb[i]
+        //the same process repeats in rmb from right to left and i-1 changes to i+1
+        for(int i=0;i<arr.length;i++){
+            if(i == 0){
+                lmb[i]=arr[0];
+            }else{
+                lmb[i]=(lmb[i-1] > arr[i])?lmb[i-1]:arr[i];
+            }
+        }
+        //right max boundary
+        for(int i=arr.length-1;i>=0;i--){
+            if(i == arr.length-1){
+                rmb[i]=arr[i];
+            }else{
+                rmb[i]=(rmb[i+1] > arr[i])?rmb[i+1]:arr[i];
+            }
+        }
+        //trapped water level
+        
+        //trapped water level=
+        //(maxwaterlevel - height)*width
+        //water level =Math.min(lmb,rmb)
+        
+        for(int i=0;i<arr.length;i++){
+            twl += ((Math.min(lmb[i],rmb[i]))-arr[i]);
+        }
+        System.out.println(" the trapped rain water level is : "+twl);
     }
 }
