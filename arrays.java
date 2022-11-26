@@ -28,6 +28,12 @@ public class arrays {
         prefixsumarray();
         kadans();
         trappingRainWater();
+        buyAndSellStock();
+        buyAndSellStock1();
+        repeatedNums();
+        tripletNumber();
+        buyAndSellStock2();
+        trappingRainWater1();
     }
     public static int linearsearch(){
         int []arr={2,4,6,8,10,12,14,16};
@@ -191,7 +197,7 @@ public class arrays {
         System.out.println(cs+" , "+ms);
     }
     public static void trappingRainWater(){
-        int []arr={4,2,0,6,3,2,5};
+        int []arr={4,3};
         // let us take two arrays which calculates left and right boundaries
         int []lmb=new int[arr.length];
         int []rmb=new int[arr.length];
@@ -203,30 +209,145 @@ public class arrays {
         //is compared with its value(arr[i]) 
         //the max between the are considered as lmb[i]
         //the same process repeats in rmb from right to left and i-1 changes to i+1
+        if(arr.length <=2){
+            System.out.println(" the trapped rain water level is : "+twl);
+        }else{            
+            for(int i=0;i<arr.length;i++){
+                if(i == 0){
+                    lmb[i]=arr[0];
+                }else{
+                    lmb[i]=(lmb[i-1] > arr[i])?lmb[i-1]:arr[i];
+                }
+            }
+            //right max boundary
+            for(int i=arr.length-1;i>=0;i--){
+                if(i == arr.length-1){
+                    rmb[i]=arr[i];
+                }else{
+                    rmb[i]=(rmb[i+1] > arr[i])?rmb[i+1]:arr[i];
+                }
+            }
+            //trapped water level
+            
+            //trapped water level=
+            //(maxwaterlevel - height)*width
+            //water level =Math.min(lmb,rmb)
+            
+            for(int i=0;i<arr.length;i++){
+                twl += ((Math.min(lmb[i],rmb[i]))-arr[i]);
+            }
+            System.out.println(" the trapped rain water level is : "+twl);
+        }
+    }
+    public static void buyAndSellStock(){
+        //this method fails if the minvalue to buy stock is at the last day 
+        int []arr={9,3,4,5,7,1};
+        int buy=Integer.MAX_VALUE;
+        int sell=0;
+        int profit=0;
         for(int i=0;i<arr.length;i++){
+            buy=Math.min(buy,arr[i]);
+        }
+        for(int i=1;i<arr.length;i++){
+            sell=Math.max(sell,arr[i]);
+        }
+        profit=(sell-buy)> 0?(sell-buy):0;
+        System.out.println("the max profit is : "+profit);
+    }
+    public static void buyAndSellStock1(){
+        int []arr={9,3,4,5,7,1};
+        int buy=Integer.MAX_VALUE;
+        int profit=0;
+        int maxprofit=0;
+        for(int i=0;i<arr.length;i++){
+            if(buy < arr[i]){
+                profit=arr[i]-buy;
+                maxprofit=Math.max(maxprofit,profit);
+            }else{
+                buy=arr[i];
+            }
+        }
+        System.out.println("the max profit : "+maxprofit);
+    }
+    public static void repeatedNums(){
+        int []arr={4,4,4,4,4};
+        boolean repeated=false;
+        for(int i=0;i<arr.length-1;i++){
+            for(int j=i+1;j<arr.length;j++){
+                if(arr[i] == arr[j]){
+                    repeated=true;
+                    break;
+                }
+            }
+        }
+        System.out.println("the array contains repeated numbers :"+repeated);
+    }
+    public static void tripletNumber(){
+        int []arr={-1,0,1,2,-1,4};
+        for(int i=0;i<arr.length;i++){
+            for(int j=i+1;j<arr.length;j++){
+                for(int k=j+1;k<arr.length;k++){
+                    if(i!=j && j!=k && k!=i && arr[i]+arr[j]+arr[k]==0 ){
+                        System.out.println(arr[i]+" "+arr[j]+" "+arr[k]);
+                    }
+                }
+            }
+        }
+    }
+    public static void buyAndSellStock2(){
+        int []arr={7,6,4,3,1};
+        int profit = 0;
+        int maxprofit=0;
+        int buy=Integer.MAX_VALUE;
+        for(int i=0;i<arr.length;i++){
+            if(buy < arr[i]){
+                profit=arr[i]-buy;
+                maxprofit=Math.max(profit,maxprofit);
+            }else{
+                buy=arr[i];
+            }
+        }
+        System.out.println(maxprofit);
+    }
+    public static void trappingRainWater1(){
+        int []arr={4, 2, 0, 3, 2, 5};
+        //trapped water level=(waterlevel-barheight)*width;
+        //waterlevel=min(maxleftheight,maxrightheight)
+        int []mlh=new int[arr.length];
+        for(int i=0;i<mlh.length;i++){
             if(i == 0){
-                lmb[i]=arr[0];
+                mlh[i] = arr[i];
             }else{
-                lmb[i]=(lmb[i-1] > arr[i])?lmb[i-1]:arr[i];
+                mlh[i]=Math.max(mlh[i-1],arr[i]);
             }
         }
-        //right max boundary
-        for(int i=arr.length-1;i>=0;i--){
-            if(i == arr.length-1){
-                rmb[i]=arr[i];
+        int []mrh=new int[arr.length];
+        for(int i=mrh.length-1;i>=0;i--){
+            if(i== mrh.length-1){
+                mrh[i]=arr[arr.length-1];
             }else{
-                rmb[i]=(rmb[i+1] > arr[i])?rmb[i+1]:arr[i];
+                mrh[i]=Math.max(mrh[i+1],arr[i]);
             }
         }
-        //trapped water level
-        
-        //trapped water level=
-        //(maxwaterlevel - height)*width
-        //water level =Math.min(lmb,rmb)
-        
+        int twl=0;
         for(int i=0;i<arr.length;i++){
-            twl += ((Math.min(lmb[i],rmb[i]))-arr[i]);
+            twl+=((Math.min(mlh[i],mrh[i]))-arr[i]);
         }
-        System.out.println(" the trapped rain water level is : "+twl);
+        System.out.println("trapped water level = "+twl);
+    }
+    public static void rotatingAtpivot(){
+        int []arr={4,5,6,7,0,1,2};
+        int target=0;
+        int tarpos=-1;
+        for(int i=0;i<arr.length;i++){
+            tarpos=(arr[i] == target)?i:-1;
+        }
+        int []arr1=bs(tarpos,arr.length,arr);
+        int []arr2=bs(0,tarpos-1,arr);
+
+    }
+    public static int[] bs(int start,int end,int []arr){
+        
+        return arr;
     }
 }
