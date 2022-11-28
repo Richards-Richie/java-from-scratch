@@ -167,14 +167,14 @@ public class sortingTechniques {
             count[arr[i]]++;
         }
         int j=0;
-        for(int i=0;i<count.length;i++){
+        for(int i=count.length-1;i>=0;i--){
             while(count[i] > 0){
                 arr[j]=i;
                 j++;
                 count[i]--;
             }
         }
-        for(int i=arr.length-1;i>=0;i--){
+        for(int i=0;i<arr.length;i++){
             System.out.print(arr[i]+"  ");
         }
     }
