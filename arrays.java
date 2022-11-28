@@ -94,7 +94,7 @@ public class arrays {
         return mid;
     }
     public static void reverse(){
-        int []arr={0,2,4,6};
+        int []arr={0,2,4,6,7};
         for(int i=0;i<arr.length;i++){
             System.out.print(arr[i]+" ");
         }
@@ -334,20 +334,5 @@ public class arrays {
             twl+=((Math.min(mlh[i],mrh[i]))-arr[i]);
         }
         System.out.println("trapped water level = "+twl);
-    }
-    public static void rotatingAtpivot(){
-        int []arr={4,5,6,7,0,1,2};
-        int target=0;
-        int tarpos=-1;
-        for(int i=0;i<arr.length;i++){
-            tarpos=(arr[i] == target)?i:-1;
-        }
-        int []arr1=bs(tarpos,arr.length,arr);
-        int []arr2=bs(0,tarpos-1,arr);
-
-    }
-    public static int[] bs(int start,int end,int []arr){
-        
-        return arr;
     }
 }
