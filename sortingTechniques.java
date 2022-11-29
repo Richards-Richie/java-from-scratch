@@ -78,7 +78,7 @@ public class sortingTechniques {
         return arr;
     }
     public static void inBuiltSort(){
-        //Integer []arr={3,6,9,8,5,2,1,4,7};
+        //int []arr={3,6,9,8,5,2,1,4,7};
         //printArray(arr);
         //Arrays.sort(arr);
         //printArray(arr);

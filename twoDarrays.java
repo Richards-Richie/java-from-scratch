@@ -4,6 +4,10 @@ public class twoDarrays {
     public static void main(String[] args){
         //creatingArray();
         spiralMatrix();
+        diagonalSum();
+        stairCaseSearch();
+        number();
+        sumofnumbersin2ndrow();
     }
     public static void creatingArray(){
         int [][]arr=new int[2][2];
@@ -20,6 +24,9 @@ public class twoDarrays {
         }
         search(arr,5);
         largestAndSmallest(arr);
+        stairCaseSearch();
+        sumofnumbersin2ndrow();
+        
     }
     public static void search(int [][]arr,int key){
         for(int i=0;i<arr.length;i++){
@@ -87,6 +94,116 @@ public class twoDarrays {
             endrow--;
             startcol++;
             endcol--;
+            System.out.println();
+        }
+    }
+    public static void diagonalSum(){
+        int [][]arr={
+            {1,2,3},
+            {4,5,6},
+            {7,8,9}
+        };
+        int sum=0;
+        // for(int i=0;i<arr.length;i++){
+        //     for(int j=0;j<arr[0].length;i++){
+        //         if(i == j){
+        //             sum+=arr[i][j];
+        //         }
+        //we will add the i/2 and j/2 sum twice 
+        //         else if(i+j == arr.length -1 ){
+        //             sum+=arr[i][j];
+        //         }
+        //     }
+        // }
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i][i];
+            if(i != arr.length-1-i){
+                sum+=arr[i][arr.length-1-i];
+            }
+        }
+        System.out.println(" sum of all diagonal elements is "+sum);
+    }
+    public static void stairCaseSearch(){
+        int [][]arr={
+            {1,2,3},
+            {4,5,6},
+            {7,8,9}
+        };
+        int key=12;
+        int row=0;
+        int col=arr.length-1;
+        while(row <= arr.length-1 &&col >= 0 ){
+            if(key == arr[row][col]){
+                System.out.println("key found at ("+row+" , "+col+")");
+                break;
+            }else if(key < arr[row][col]){
+                col--;
+            }
+            else{
+                row++;
+            }
+        }
+        if(key !=arr[arr.length-1][0]){
+            System.out.println("key not found");
+        }
+    }
+    public static void number(){
+        int key=7;
+        int [][]arr={
+            {4,7,6,7,7},
+            {1,8,7,7,7},
+            {1,4,7,7,7},
+            {2,7,7,7,7},
+            {7,7,7,7,7}
+        };
+        int count=0;
+        for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr[0].length;j++){
+                if(key == arr[i][j]){
+                    count++;
+                }
+            }
+        }
+        System.out.println("the no of "+key+" in the matrix is "+count);
+    }
+    public static void sumofnumbersin2ndrow(){
+        int [][]arr={
+            {1,4,9},
+            {11,4,3},
+            {2,2,3}
+        };
+        int i=1;
+        int sum=0;
+        int j=0;
+        while(i==1 && j<arr[0].length){
+            sum+=arr[1][j];
+            j++;
+        }
+        sum=0;
+        j=0;
+        for(i=1;i == 1 && j<arr[0].length ;j++ ){
+            sum+=arr[1][j];
+        }
+        System.out.println("sum is "+sum);
+    }
+    public static void transpose(){
+        System.out.println("hello");
+        int [][]arr={
+            {123},{147}
+        };
+        int rows=2;
+        int cols=3;
+        for(int i=0;i<rows/2;i++){
+            for(int j=0;j<cols/2;j++){
+                int temp=arr[i][j];
+                arr[j][i]=arr[i][j];
+                arr[i][j]=temp;
+            }
+        }
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<cols;j++){
+                System.out.print(arr[i][j]+" ");
+            }
             System.out.println();
         }
     }
