@@ -8,6 +8,7 @@ public class twoDarrays {
         stairCaseSearch();
         number();
         sumofnumbersin2ndrow();
+        transpose();
     }
     public static void creatingArray(){
         int [][]arr=new int[2][2];
@@ -22,11 +23,6 @@ public class twoDarrays {
             }
             System.out.println();
         }
-        search(arr,5);
-        largestAndSmallest(arr);
-        stairCaseSearch();
-        sumofnumbersin2ndrow();
-        
     }
     public static void search(int [][]arr,int key){
         for(int i=0;i<arr.length;i++){
@@ -187,22 +183,21 @@ public class twoDarrays {
         System.out.println("sum is "+sum);
     }
     public static void transpose(){
-        System.out.println("hello");
         int [][]arr={
             {123},{147}
         };
         int rows=2;
         int cols=3;
-        for(int i=0;i<rows/2;i++){
-            for(int j=0;j<cols/2;j++){
-                int temp=arr[i][j];
-                arr[j][i]=arr[i][j];
-                arr[i][j]=temp;
-            }
-        }
+        int [][]transpose=new int[cols][rows];
         for(int i=0;i<rows;i++){
             for(int j=0;j<cols;j++){
-                System.out.print(arr[i][j]+" ");
+                System.out.print("sdfa , ");
+                transpose[j][i]=arr[i][j];
+            }
+        }
+        for(int i=0;i<cols;i++){
+            for(int j=0;j<rows;j++){
+                System.out.print(transpose[i][j]+" ");
             }
             System.out.println();
         }
