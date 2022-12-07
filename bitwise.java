@@ -19,6 +19,7 @@ public class bitwise {
         //countBits();
         //powerOf2();
         //powerOfAnyNumber();
+        System.out.println(5 ^ 5);
         System.out.println((5&1) + (5|1));
         swap();
     }
