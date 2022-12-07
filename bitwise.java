@@ -14,7 +14,13 @@ public class bitwise {
         //System.out.println(clearIth()); 
         // System.out.println(getIth());
         // updateIthbit();
-        System.out.println(clearAllIbits());
+        //System.out.println(clearAllIbits());
+        //System.out.println(clearBitsInRange());
+        //countBits();
+        //powerOf2();
+        //powerOfAnyNumber();
+        System.out.println((5&1) + (5|1));
+        swap();
     }
     public static void evenorodd(){
         System.out.println("enter a value");
@@ -77,5 +83,64 @@ public class bitwise {
         int i=s.nextInt();
         int bitmask=(~0 << i);
         return n&bitmask;
+    }
+    public static int clearBitsInRange(){
+        System.out.println("clear range ");
+        System.out.println("enter n value");
+        int n=s.nextInt();
+        System.out.println("enter i th vlaue");
+        int i=s.nextInt();
+        System.out.println("enter j value");
+        int j=s.nextInt();
+        int a=((~0)<< j+1);
+        int b=(1<<i)-1;
+        int bitmask=a | b;
+        return n&bitmask; 
+    }
+    public static void countBits(){
+        System.out.println("the value of n is :");
+        int n=s.nextInt();
+        int count=0;
+        while(n > 0){
+            if( (n & 1) !=0){
+                count++;
+            }
+            n=n>>1;
+        }
+        System.out.println(count);
+    }
+    public static void powerOf2(){
+        System.out.println("enter a value");
+        int n=s.nextInt();
+        boolean b=true;
+        if( (n & n-1)==0 ){
+            b=true;
+        }else{
+            b=false;
+        }
+        System.out.println("the given value is power of 2 : " +b);
+    }
+    public static void powerOfAnyNumber(){
+        System.out.println("enter a value : ");
+        int n=s.nextInt();
+        System.out.println("enter a power value : ");
+        int m=s.nextInt();
+        int ans=1;
+        while(m > 0){
+            if((m&1)!=0){
+                ans=ans*n;
+            }
+            n=n*n;
+            m=m>>1;
+        }
+        System.out.println(ans);
+    }
+    public static void swap(){
+        int a=s.nextInt();
+        int b=s.nextInt();
+        a=a^b;
+        b=a^b;
+        a=a^b;
+        System.out.println("a : "+a+"b : "+b);
     }
 }
