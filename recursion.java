@@ -8,6 +8,14 @@ public class recursion {
         System.out.println();
         System.out.println(factorial(5));
         System.out.println(sumOfNaturals(5));
+        System.out.println(fibnacci(5));
+        int []arr={1,2,3,6,5,6,6};
+        System.out.println(isSorted(arr,0));
+        System.out.println(firstOccurance(arr,0,100));
+        System.out.println(lastOccurance(arr,0,6));
+        System.out.println(power(2,10));
+        System.out.println(powerInLogn(2,10));
+        System.out.println(tilingProblem(5));
     }
     public static void increasingOrder(int n){
         if(n == 1){
@@ -44,5 +52,70 @@ public class recursion {
             return 1;
         }
         return n+sumOfNaturals(n-1);
+    }
+    public static int fibnacci(int n){
+        if(n == 0 || n==1){
+            return n;
+        }
+        else if(n>1){
+            return fibnacci(n-1)+fibnacci(n-2);
+        }else{
+            return 0;
+        }
+    }
+    public static boolean isSorted(int arr[],int index){
+        if(index == arr.length-1){
+            return true;
+        }
+        if(arr[index] > arr[index+1]){
+            return false;
+        }
+        return isSorted(arr,index+1);
+    }
+    public static int firstOccurance(int []arr,int i,int key){
+        if(i == arr.length){
+            return -1;
+        }
+        if(arr[i] == key){
+            return i;
+        }
+        return firstOccurance(arr,i+1,key);
+    }
+    public static int lastOccurance(int []arr,int i,int key){
+        if(i == arr.length){
+            return -1;
+        }
+        int isFound=lastOccurance(arr,i+1,key);
+        if(isFound == -1 && arr[i] == key){
+            return i;
+        }
+        return isFound;
+    }
+    public static int power(int x,int n){
+        if(n == 0){
+            return 1;
+        }
+        return x*power(x,n-1);
+    }
+    public static int powerInLogn(int x,int n){
+        if(n == 0){
+            return 1;
+        }
+        if(n%2 == 0){
+            int half=powerInLogn(x,n/2);
+            return half*half;
+        }else{
+            int half=powerInLogn(x,n/2);
+            return x*half*half;
+        }
+    }
+    //important amazon
+    public static int tilingProblem(int n){
+        if(n==0 || n==1){
+            return 1;
+        }
+        int vertical=tilingProblem(n-1);
+        int horizontal=tilingProblem(n-2);
+        return vertical+horizontal;
     }
 }
