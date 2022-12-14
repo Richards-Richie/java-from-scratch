@@ -24,7 +24,8 @@ public class recursion {
         recursiveOccurances(arr,0,6 );
         System.out.println();
         printNumber(2019);
-        System.out.println(stringLength("richards",0));
+        System.out.println();
+        System.out.println(length("richards",0,0));
     }
     public static void increasingOrder(int n){
         if(n == 1){
@@ -173,53 +174,20 @@ public class recursion {
         }
     } 
     public static void printNumber(int n){
-        if( n <= 0){
+        if(n <= 0){
             return;
         }
+        String []arr={"zero","one","two","three","four","five","six","seven","eight","nine"};
         int res=n%10;
-        switch(res){
-            case 0:
-                System.out.print("zero ");
-                break;
-            case 1:
-                System.out.print("one ");
-                break;
-            case 2:
-                System.out.print("two ");
-                break;
-            case 3:
-                System.out.print("three ");
-                break;
-            case 4:
-                System.out.print("four ");
-                break;
-            case 5:
-                System.out.print("five ");
-                break;
-            case 6:
-                System.out.print("six ");
-                break;
-            case 7:
-                System.out.print("seven ");
-                break;
-            case 8:
-                System.out.print("eight ");
-                break;
-            case 9:
-                System.out.print("nine ");
-                break;
-            default :
-                break;
-        }
-        if(n > 0){
-            printNumber(n/10);
-        }
+        n=n/10;
+        printNumber(n);
+        System.out.print(arr[res]+" ");
     }
-    public static int stringLength(String s,int length){
-        if( s.length() == length){
+    public static int length(String s,int length,int i){
+        if(s.length()+1 == i ){
             return length;
         }
-        return stringLength(s,length++);
+        return length(s,length++,i++); 
     }
 }
 
