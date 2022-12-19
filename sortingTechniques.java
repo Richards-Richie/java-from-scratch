@@ -1,11 +1,11 @@
-//import java.util.*;
+  //import java.util.*;
 public class sortingTechniques {
     
     public static void main(String[] args){
-        //int []arr={3,8,7,41,341,65465,454,444};
+        int []arr={1,2,3,4,5,6,7,8,9};
         System.out.println("Bubble sort");
-        //printArray(arr);
-        //printArray(bubbleSort(arr));
+        printArray(arr);
+        printArray(bubbleSort(arr));
         System.out.println("Selection sort");
         //printArray(arr);
         //printArray(selectionSort(arr));
@@ -20,24 +20,22 @@ public class sortingTechniques {
         //bubbleSort1();
         //insertionSort1();
         //SelectionSort1();
-        countinSort1();
+        // countinSort1();
 
     }
     public static int[] bubbleSort(int []arr){
         for(int i=0;i<arr.length-1;i++){
-            int swaps=0;
+            boolean swapped=false;
             for(int j=0;j<arr.length-1-i;j++){
-                if(arr[j] < arr [j+1]){
-                    j+=1;
-                }
-                if(arr[j] > arr[j+1]){
+                if(arr[j] > arr[j+1] ){
                     int temp=arr[j+1];
                     arr[j+1]=arr[j];
                     arr[j]=temp;
-                    swaps++;
-                    System.out.println("no of swaps : "+swaps);
+                    swapped=true;
                 }
-                
+            }
+            if(swapped==false){
+                break;
             }
         }
         return arr;

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class DivideAndConquer {
     public static void main(String[] args) {
         int []arr2={9,8,7,6,5,4,3,2,1};
@@ -10,8 +12,17 @@ public class DivideAndConquer {
         printArray(arr1);
         int []arr={4,5,6,7,0,1,2};
         System.out.println(rotatedSearch(arr,0,arr.length,0));
+        String []arr3={"sun","earth","mars","mercury"};
+        String []arr4=mergeSort1(arr3,0,arr3.length-1);
+        for(int i=0;i<arr4.length;i++){
+            System.out.print(arr4[i]+" ");
+        }
+        int []arr5={2,3,3,1,3,3};
+        System.out.println(majorityElement(arr5));
+        
     }
     public static void printArray(int []arr){
+        System.out.println();
         for(int i=0;i<arr.length;i++){
             System.out.print(arr[i]+" ");
         }
@@ -98,6 +109,79 @@ public class DivideAndConquer {
             }else{
                 return rotatedSearch(arr,start,mid-1,target);
             }
+        }
+    }
+    public static String[] mergeSort1(String []arr,int start,int end){
+        if(start == end){
+            String []a={arr[start]};
+            return a;
+        }
+        int mid=start+(end-start)/2;
+        String []arr1=mergeSort1(arr,start,mid);
+        String []arr2=mergeSort1(arr,mid+1,end);
+        String []arr3=merge(arr1,arr2);
+        return arr3;
+    }
+    public static String[] merge(String []arr1,String []arr2){
+        int m=arr1.length;
+        int n=arr2.length;
+        String []arr3= new String[m+n];
+        int index=0;
+        int i=0;
+        int j=0;
+        while(i < m && j < n){
+            if(isAlphabaticalOrder(arr1[i],arr2[j])){
+                arr3[index]=arr1[i];
+                i++;
+                index++;
+            }else{
+                arr3[index] = arr2[j];
+                j++;
+                index++;
+            }
+        }
+        while(i < m){
+            arr3[index]=arr1[i];
+            i++;
+            index++;
+        }
+        while(j < n){
+            arr3[index]=arr2[j];
+            j++;
+            index++;
+        }
+        return arr3;
+    }
+    public static boolean isAlphabaticalOrder(String arr1,String arr2){
+        if(arr1.compareTo(arr2) < 0){
+            return true;
+        }
+        return false;
+    }
+    public static int majorityElement(int []arr){
+        Arrays.sort(arr);
+        int largest=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            largest=Math.max(largest,arr[i]);
+        }
+        int []count=new int[largest+1];
+        for(int i=0;i<arr.length;i++){
+            count[arr[i]]++;
+        }
+        largest=Integer.MIN_VALUE;
+        for(int i=0;i<count.length;i++){
+            largest=Math.max(largest,count[i]);
+        }
+        int index=-1;
+        for(int i=0;i<count.length;i++){
+            if(largest == count[i]){
+                index=i;
+            }
+        }
+        if(largest > arr.length/2){
+            return index;
+        }else{
+            return -1;
         }
     }
 }
