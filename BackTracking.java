@@ -33,6 +33,11 @@ public class BackTracking {
         }else{
             System.out.println("no solution");
         }
+        int [][]ratmaze={
+            {1,0,0,0},{1,1,0,1},{0,1,0,0},{1,1,1,1}
+        };
+        int [][]sol=new int[ratmaze.length][ratmaze.length];
+        System.out.println(ratMaze(ratmaze,0,0,sol));
     }
     public static void printSudoku(int [][]arr){
         for(int i=0;i<arr.length;i++){
@@ -191,5 +196,31 @@ public class BackTracking {
             }
         }
         return true;
+    }
+    public static boolean ratMaze(int [][]maze,int rows,int cols,int [][]sol){
+        //base
+        if(rows == maze.length-1 && cols ==maze.length-1){
+            sol[rows][cols]=1;
+            printSudoku(sol);
+            return true;
+        }
+        //recursion
+        if(isSafe2(maze,rows,cols)){
+            sol[rows][cols]=1;
+            if(ratMaze(maze,rows+1,cols,sol)){
+                return true;
+            }
+            if(ratMaze(maze,rows,cols+1,sol)){
+                return true;
+            }
+            sol[rows][cols]=0;
+        }
+        return false;
+    }
+    public static boolean isSafe2(int [][]maze,int rows,int cols){
+        if(rows <=maze.length-1 && cols <=maze.length-1 && maze[rows][cols]==1){
+            return true;
+        }
+        return false;
     }
 }
