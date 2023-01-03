@@ -30,6 +30,28 @@ public class ArrayLists {
         Collections.sort(al,Collections.reverseOrder());
         System.out.println(al);
         mld();
+        ArrayList<Integer> containsRainWater=new ArrayList<Integer>();
+        containsRainWater.add(1);
+        containsRainWater.add(8);
+        containsRainWater.add(6);
+        containsRainWater.add(2);
+        containsRainWater.add(5);
+        containsRainWater.add(4);
+        containsRainWater.add(8);
+        containsRainWater.add(3);
+        containsRainWater.add(7);
+        System.out.println(containsMoreWater(containsRainWater));
+        System.out.println(storeWater(containsRainWater));
+        ArrayList<Integer> pairs=new ArrayList<>();
+        pairs.add(1);
+        pairs.add(2);
+        pairs.add(3);
+        pairs.add(4);
+        pairs.add(5);
+        pairs.add(6);
+        System.out.println(pairSum(pairs, 3));
+
+
     }
     public static void reverseList(ArrayList<Integer> al){
         for(int i=0;i<al.size();i++){
@@ -60,5 +82,49 @@ public class ArrayLists {
         al3.add(3);al3.add(6);al3.add(9);
         al.add(al1);al.add(al2);al.add(al3);
         System.out.println(al);
+    }
+    public static int containsMoreWater(ArrayList<Integer> al){
+        int max=0;
+        for(int i=0;i<al.size()-1;i++){
+            for(int j=i+1;j<al.size();j++){
+                int height=Math.min(al.get(i),al.get(j));
+                int width=j-i;
+                int water=height*width;
+                max=Math.max(water,max);
+            }
+        }
+        return max;
+    }
+    public static int storeWater(ArrayList<Integer> al){
+        int max=0;
+        int left=0;
+        int right=al.size()-1;
+        while(left < right){
+            int height=Math.min(al.get(left),al.get(right));
+            int width=right-left;
+            int water=height*width;
+            max=Math.max(max,water);
+            if(al.get(left) < al.get(right)){
+                left++;
+            }else{
+                right--;
+            }
+        }
+        return max;
+    }
+    public static boolean pairSum(ArrayList<Integer> al,int target){
+        int left=0;
+        int right=al.size()-1;
+        while(left < right){
+            int sum=al.get(left)+al.get(right);
+            if(sum == target){
+                return true;
+            }else if(sum < target){
+                left++;
+            }else{
+                right--;
+            }
+        }
+        return false;
     }
 }
