@@ -50,7 +50,18 @@ public class ArrayLists {
         pairs.add(5);
         pairs.add(6);
         System.out.println(pairSum(pairs, 3));
-
+        ArrayList<Integer> a=new ArrayList<Integer>();
+        a.add(-11);
+        a.add(-15);
+        a.add(16);
+        a.add(16);
+        a.add(19);
+        a.add(110);
+        //11 15 6 8 9 10 
+        System.out.println("twoPairSum");
+        //System.out.println(twoPairSum(a, 18));
+        System.out.println(monotoneIncreasing(a));
+        System.out.println(-1>-2);
 
     }
     public static void reverseList(ArrayList<Integer> al){
@@ -126,5 +137,51 @@ public class ArrayLists {
             }
         }
         return false;
+    }
+    public static boolean twoPairSum(ArrayList<Integer> a,int target){
+        int bp=-1;
+        for(int i=0;i<a.size();i++){
+            if(a.get(i) > a.get(i+1)){
+                bp=i;
+                break;
+            }
+        }
+        int lp=bp+1;
+        int rp=bp;
+        while(lp!=rp){
+            //case 1
+            if(a.get(lp)+a.get(rp) == target){
+                
+                return true;
+            }
+            //case 2
+            else if(a.get(lp)+a.get(rp) < target){
+                lp= (lp+1) % a.size();
+            }
+            //case 3
+            else{
+                rp=(a.size()+rp-1) % a.size();
+            }
+        }
+        return false;
+    }
+    public static boolean monotoneIncreasing(ArrayList<Integer> a){
+        boolean b=false;
+        for(int i=1;i<a.size();i++){
+            if(a.get(i-1) <= a.get(i) ){
+                b=true;
+            }else{
+                return false;
+            }
+        }
+        return b;
+    }
+    public static ArrayList<Integer> lonelyNumber(ArrayList<Integer> a){
+        Collections.sort(a);
+        ArrayList<Integer> ans=new ArrayList<>();
+        for(int i=0;i<a.size()-1;i++){
+            if(a.get(i)== a.get(i+1)){}
+        }
+        return ans;
     }
 }
