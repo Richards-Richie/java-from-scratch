@@ -62,6 +62,12 @@ public class ArrayLists {
         //System.out.println(twoPairSum(a, 18));
         System.out.println(monotoneIncreasing(a));
         System.out.println(-1>-2);
+        ArrayList<Integer> b=new ArrayList<>();
+        b.add(1);
+        b.add(3);
+        b.add(5);
+        b.add(3);
+        System.out.println(lonelyNumber(b));
 
     }
     public static void reverseList(ArrayList<Integer> al){
@@ -180,7 +186,14 @@ public class ArrayLists {
         Collections.sort(a);
         ArrayList<Integer> ans=new ArrayList<>();
         for(int i=0;i<a.size()-1;i++){
-            if(a.get(i)== a.get(i+1)){}
+            if(a.get(i)!= a.get(i+1) && a.get(i) != a.get(i+1) -1){
+                ans.add(a.get(i));
+            }else{
+                i++;
+            }
+        }
+        if(a.get(a.size()-1) - 1 !=a.get(a.size()-2) ){
+            ans.add(a.get(a.size()-1));
         }
         return ans;
     }
