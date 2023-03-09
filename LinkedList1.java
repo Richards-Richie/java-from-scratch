@@ -1,4 +1,5 @@
-public class LinkedList{
+//import java.util.*;
+public class LinkedList1{
     public static class Node{
         int data;
         Node next;
@@ -188,13 +189,103 @@ public class LinkedList{
             }
         }
         return true;
+    }public boolean isCycle(){
+        boolean res=false;
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                return true;
+            }
+        } 
+        return res;
+    }
+    public void removeCycle(){
+        //detecting the cycle
+        boolean loop=false; 
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow == fast){
+                loop=true;
+                break;
+            }
+        }
+        if(loop == false){
+            return;
+        }
+        //finding the meeting point
+        Node prev=null;
+        slow=head;
+        while(slow !=fast){
+            prev=fast;
+            slow=slow.next;
+            fast=fast.next;
+        }
+        //removing the cycle
+        prev.next=null;
+    }
+    public Node mergeSort(Node head){
+        //base case
+        if(head == null || head.next == null){
+            return head;
+        }
+        //finding mid
+        Node mid=findmid(head);
+        
+        Node righthead=mid.next;
+        mid.next=null;
+        //recursions
+        Node lefthalf=mergeSort(head);
+        Node righthalf=mergeSort(righthead);
+        return merge(lefthalf,righthalf);
+    }
+    public Node merge(Node lefthead,Node righthead){
+        Node dummy=new Node(-1);
+        Node temp=dummy;
+        while(lefthead!=null && righthead!=null){
+            if(lefthead.data<=righthead.data){
+                temp.next=lefthead;
+                lefthead=lefthead.next;
+                temp=temp.next;
+            }else{
+                temp.next=righthead;
+                righthead=righthead.next;
+                temp=temp.next;
+            }
+        }
+        while(lefthead!=null){
+            temp.next=lefthead;
+            lefthead=lefthead.next;
+            temp=temp.next;
+        }
+        while(righthead!=null){
+            temp.next=righthead;
+            righthead=righthead.next;
+            temp=temp.next;
+        }
+        return dummy.next;
+    }
+
+    public Node findmid(Node head){
+        Node slow=head;
+        Node fast=head.next;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
     }
     public static void main(String[] args) {
-        LinkedList l1=new LinkedList();
-        l1.addFirst(5);
+        LinkedList1 l1=new LinkedList1();
         l1.addFirst(1);
-        l1.addLast(5);
-        l1.addLast(1);
+        l1.addFirst(2);
+        l1.addLast(4);
+        l1.addLast(3);
         l1.addMiddle(2,0);
         // l1.printList();
         // System.out.println("size :"+size);
@@ -209,10 +300,20 @@ public class LinkedList{
         //System.out.println(l1.recSearch(11));
         //l1.reverseList();
         //l1.remove(3);
-        System.out.println(l1.findMid(head).data);
+        // System.out.println(l1.findMid(head).data);
+        // l1.printList();
+        // System.out.println(l1.palindrome(l1.findMid(head)));
+        // head=new Node(1);
+        // head.next=new Node(2);
+        // head.next.next=new Node(3);
+        // head.next.next.next=head.next;
+        // System.out.println(l1.isCycle());
+        // l1.removeCycle();
+        //System.out.println(l1.isCycle());
         l1.printList();
-        System.out.println(l1.palindrome(l1.findMid(head)));
-        
+        head=l1.mergeSort(head);
+        l1.printList();
+
     }
 
 }
