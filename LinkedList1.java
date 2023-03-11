@@ -280,13 +280,49 @@ public class LinkedList1{
         }
         return slow;
     }
+    public void zigZag(){
+        // find the mid node
+        //slow fast approach
+        Node slow=head;
+        Node fast=head.next;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        Node mid=slow;
+        //reversing the second half
+        Node prev=null;
+        Node cur=mid.next;
+        Node Next;
+        while(cur!=null ){
+            Next=cur.next;
+            cur.next=prev;
+            prev=cur;
+            cur=Next;
+        }
+        mid.next=null;
+        //attaching the left head and right heads of the list
+        Node lefthead=head;
+        Node righthead=tail;
+        Node leftnext;
+        Node rightnext;
+        while(lefthead !=null && righthead!=null){
+            leftnext=lefthead.next;
+            lefthead.next=righthead;
+            rightnext=righthead.next;
+            righthead.next=leftnext;
+            lefthead=leftnext;
+            righthead=rightnext;
+        }
+    }
     public static void main(String[] args) {
         LinkedList1 l1=new LinkedList1();
-        l1.addFirst(1);
         l1.addFirst(2);
-        l1.addLast(4);
+        l1.addFirst(1);
         l1.addLast(3);
-        l1.addMiddle(2,0);
+        l1.addLast(4);
+        l1.addLast(5);
+        l1.addLast(6);
         // l1.printList();
         // System.out.println("size :"+size);
         //l1.removeFirst();
@@ -310,10 +346,12 @@ public class LinkedList1{
         // System.out.println(l1.isCycle());
         // l1.removeCycle();
         //System.out.println(l1.isCycle());
+        // l1.printList();
+        // head=l1.mergeSort(head);
+        // l1.printList();
         l1.printList();
-        head=l1.mergeSort(head);
+        l1.zigZag();
         l1.printList();
-
     }
 
 }

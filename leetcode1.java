@@ -1,11 +1,13 @@
 import java.util.*;
 public class leetcode1 {
     public static void main(String[] args){
-        int []arr={2,2,1,2,2,11,};
+        int []arr={1,7,3,6,5,6};
         // int target=9;
         // int []ans=two_sum(arr,target);
         // System.out.print(ans[0]+" "+ans[1]);
-        System.out.println(removeDuplicates1(arr));
+        //System.out.println(removeDuplicates1(arr));
+
+        System.out.println(pivotIndex(arr));
         
     }
     public static int[]two_sum(int []nums,int target){
@@ -85,5 +87,31 @@ public class leetcode1 {
         }
         Arrays.sort(nums);
         return 0;
+    }
+    public static int pivotIndex(int []nums){
+        int pivot=0;
+        int leftsum=0;
+        int rightsum=0;
+        int totalsum=0;
+        for(int i=0;i<nums.length;i++){
+            totalsum+=nums[i];
+        }
+        for(int i=0;i<nums.length;i++){
+            pivot=i;
+            if(i >0){
+                leftsum=leftsum+nums[i-1];
+            }else{
+                leftsum=0;
+            }
+            if(i == nums.length-1){
+                rightsum=0;
+            }else{
+                rightsum=totalsum-leftsum-nums[i];
+            }
+            if(rightsum == leftsum){
+                return pivot;
+            }
+        }
+        return -1;
     }
 }
