@@ -8,7 +8,37 @@ public class leetcode1 {
         //System.out.println(removeDuplicates1(arr));
 
         System.out.println(pivotIndex(arr));
-        
+        System.out.println(isSequence("abc", "ahbgdc"));
+    }
+    public static boolean isSequence(String s,String t){
+        ArrayList<Character> arr=new ArrayList<>();
+        for(int i=0;i<t.length();i++){
+            arr.add(t.charAt(i));
+        }
+        int counter=0;
+        int index=0;
+        for(int i=0;i<s.length();i++){
+            index=helper(arr,s.charAt(i),index);
+            if(index == -1){
+                return false;
+            }else{
+                counter++;
+            }
+        }
+        //System.out.println("counter : "+counter+" s.length() : "+s.length() );
+        if(counter == s.length()){
+            return true;
+        }
+        System.out.println("counter");
+        return false;
+    }
+    public static int helper(ArrayList<Character> t,char c,int index){
+        for(int i=index;i<t.size();i++){
+            if(t.get(i)== c){
+                return i;
+            }
+        }
+        return -1;
     }
     public static int[]two_sum(int []nums,int target){
         //brute force approach
