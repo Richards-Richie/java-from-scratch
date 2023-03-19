@@ -24,6 +24,17 @@ public class LinkedList1{
         head=n1;
         //System.out.println(n1.data);
     }
+    // public void sortedList(Node l1,Node l2){
+    //     Node l3=null;
+    //     Node temp;
+    //     while(l1!=null && l2!=null){
+    //         temp=(l1.data <= l2.data)?l1:l2;
+    //         l3.data=-1;
+    //         l3.next=temp;
+    //         l1=l1.next;
+    //         l2=l2.next;
+    //     }
+    // }
     public void addLast(int data){
         Node n1=new Node(data);
         size++;
@@ -315,6 +326,7 @@ public class LinkedList1{
             righthead=rightnext;
         }
     }
+    
     public static void main(String[] args) {
         LinkedList1 l1=new LinkedList1();
         l1.addFirst(2);

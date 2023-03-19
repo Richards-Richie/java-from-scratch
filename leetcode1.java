@@ -6,9 +6,39 @@ public class leetcode1 {
         // int []ans=two_sum(arr,target);
         // System.out.print(ans[0]+" "+ans[1]);
         //System.out.println(removeDuplicates1(arr));
-
         System.out.println(pivotIndex(arr));
         System.out.println(isSequence("abc", "ahbgdc"));
+        LinkedList <Integer> l1=new LinkedList<>();
+        l1.add(1);
+        l1.add(3);
+        l1.add(4);
+        LinkedList <Integer> l2=new LinkedList<>();
+        l2.add(1);
+        l2.add(2);
+        l2.add(5);
+        sortedList(l1,l2);
+    }
+    public static void sortedList(List<Integer> l1, List<Integer> l2){
+        LinkedList<Integer> l3=new LinkedList<>();
+        int m=(l1.size()+l2.size());
+        System.out.println("size : "+m);
+        int i=0;
+        int j=0;
+        int k=0;
+        while(i<m){
+            if(k<l1.size()&& l1.get(k)<=l2.get(j) ){
+                l3.add(l1.get(k));
+                k++;
+                i++;
+            }else{
+                l3.add(l2.get(j));
+                j++;
+                i++;
+            }
+        }
+        for(int a=0;a<l3.size();a++){
+            System.out.print(l3.get(a)+" ");
+        }
     }
     public static boolean isSequence(String s,String t){
         ArrayList<Character> arr=new ArrayList<>();
