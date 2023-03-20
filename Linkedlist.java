@@ -20,7 +20,7 @@ public class Linkedlist {
         head=n1;
     }
     public int tail1(Node n1){
-        Node head=n1;
+        //Node head=n1;
         while(n1!=null && n1.next!=null ){
             tail=n1.next;
         }
@@ -30,6 +30,6 @@ public class Linkedlist {
         Linkedlist l1=new Linkedlist();
         l1.addFirst(1);
         l1.addFirst(2);
-        System.out.println(l1.tail1(l1.head));
+        System.out.println(l1.tail1(head));
     }
 }
