@@ -1,3 +1,4 @@
+import java.util.*;
 public class Queues {
     static class queue{
         static int arr[];
@@ -97,6 +98,25 @@ public class Queues {
 
         }
     }
+    public static String printFirstNonRepeatingChar(String str){
+        int []freqChars=new int[26];
+        Queue<Character> q=new LinkedList<>();
+        String ans="";
+        for(int i=0;i<str.length();i++){
+            char c=str.charAt(i);
+            q.add(c);
+            freqChars[c-'a']+=1;
+            while(!q.isEmpty() && freqChars[q.peek()-'a']>1){
+                q.remove();
+            }
+            if(q.isEmpty()){
+                ans+="-1";
+            }else{
+                ans+=""+q.peek();
+            }
+        }
+        return ans;
+    }
     
     public static void main(String[] args){
         // queue a=new queue(5);
@@ -107,12 +127,13 @@ public class Queues {
         //     System.out.println(a.peek());
         //     a.remove();
         // }
-        circularque c=new circularque(5);
-        c.enque(1);
-        c.enque(2);
-        c.enque(3);
-        while(!c.isEmptyC()){
-            System.out.println(c.deque());
-        }
+        // circularque c=new circularque(5);
+        // c.enque(1);
+        // c.enque(2);
+        // c.enque(3);
+        // while(!c.isEmptyC()){
+        //     System.out.println(c.deque());
+        // }
+        System.out.println(printFirstNonRepeatingChar("aabccxb"));
     }
 }
