@@ -117,7 +117,40 @@ public class Queues {
         }
         return ans;
     }
-    
+    public static void interleave(Queue<Integer> q){
+        int size=q.size();
+        Queue<Integer> q1=new LinkedList<>();
+        for(int i=0;i<size/2;i++){
+            q1.add(q.remove());
+        }
+        while(!q1.isEmpty()){
+            q.add(q1.remove());
+            q.add(q.remove());
+        }
+        while(!q.isEmpty()){
+            System.out.println(q.remove());
+        }
+    }
+    public static void reverse(Queue<Integer> q){
+        Stack<Integer> q1=new Stack<>();
+        while(!q.isEmpty()){
+            q1.push(q.remove());
+        }
+        while(!q1.isEmpty()){
+            q.add(q1.pop());
+        }
+        while(!q.isEmpty()){
+            System.out.print(q.remove()+" ");
+        }
+    }
+    public static void deque(){
+        Deque<Integer> q=new LinkedList<>();
+        q.addFirst(1);
+        q.addLast(2);
+        System.out.println(q.removeFirst());
+        q.addFirst(3);
+        System.out.println(q.removeLast());
+    }
     public static void main(String[] args){
         // queue a=new queue(5);
         // a.add(1);
@@ -134,6 +167,20 @@ public class Queues {
         // while(!c.isEmptyC()){
         //     System.out.println(c.deque());
         // }
-        System.out.println(printFirstNonRepeatingChar("aabccxb"));
+        //System.out.println(printFirstNonRepeatingChar("aabccxb"));
+        // Queue<Integer> q=new LinkedList<>();
+        // q.add(1);
+        // q.add(2);
+        // q.add(3);
+        // q.add(4);
+        // q.add(5);
+        // q.add(6);
+        // q.add(7);
+        // q.add(8);
+        // q.add(9);
+        // q.add(10);
+        //interleave(q);
+        // reverse(q);
+        deque();
     }
 }
