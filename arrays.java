@@ -238,6 +238,20 @@ public class arrays {
             }
             System.out.println(" the trapped rain water level is : "+twl);
         }
+        // Stack<Integer> s=new Stack<>();
+        // for(int i=0;i<arr.length;i++){
+        //     int twl1=0;
+        //     while(s.size() >0 && arr[s.peek()] < arr[i]){
+        //         int rm=i;
+        //         int cur=s.pop();
+        //         if(s.size() == 0){
+        //             break;
+        //         }int lm=s.peek();
+        //         int width=rm-lm-1;
+        //         twl1+=(Math.min(arr[rm],arr[lm])-arr[cur])*width;
+        //     }
+        // }
+        // return twl1;
     }
     public static void buyAndSellStock(){
         //this method fails if the minvalue to buy stock is at the last day 
