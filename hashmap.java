@@ -1,5 +1,5 @@
 import java.util.*;
-public class hashmap {
+public class hashmap<k,v> {
     public static void main(String[] args) {
         HashMap <String,String>hm=new HashMap<>();
         hm.put("bec","bapatla");
@@ -19,5 +19,12 @@ public class hashmap {
         for(Map.Entry<String,String> m : hm.entrySet()){
             System.out.println(m);
         }
+        linkedhashmap();
+    }
+    public static void linkedhashmap(){
+        LinkedHashMap <String,String>hm=new LinkedHashMap<>();
+        hm.put("bec","bapatla");
+        hm.put("rvrjc","guntoor");
+        System.out.println(hm);
     }
 }
