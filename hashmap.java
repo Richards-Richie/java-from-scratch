@@ -19,7 +19,7 @@ public class hashmap<k,v> {
         for(Map.Entry<String,String> m : hm.entrySet()){
             System.out.println(m);
         }
-        linkedhashmap();
+        linkedhashmap();    
     }
     public static void linkedhashmap(){
         LinkedHashMap <String,String>hm=new LinkedHashMap<>();
