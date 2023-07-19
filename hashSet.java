@@ -35,6 +35,8 @@ public class hashSet {
         arr2[4]=2;
         //union(arr1,arr2);
         itenary();
+        int []arr3={15,2,-2,-8,1,7,10,23};
+        System.out.println(subArraySum(arr3));
     }
     public static void iterator(HashSet <ArrayList>hs){
         System.out.println("iterator");
@@ -84,5 +86,19 @@ public class hashSet {
             System.out.print(start+" --> "+hs.get(start)+" ");
             start=hs.get(start);
         }
+    }
+    public static int subArraySum(int []arr){
+        HashMap <Integer,Integer> hs=new HashMap<>();
+        int ans=-1;
+        int sum=0;
+        for(int j=0;j<arr.length;j++){
+            sum+=arr[j];
+            if(hs.containsKey(sum)){
+                ans=j-hs.get(sum);
+            }else{
+                hs.put(sum,j);
+            }
+        }
+        return ans;
     }
 }
