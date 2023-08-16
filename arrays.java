@@ -8,11 +8,11 @@ public class arrays {
         //String []names2={"Richards","Indra","Sai"};
 
 
-        try (//inserting values to arrays 
-        Scanner s = new Scanner(System.in)) {
-            names[0]=1;
-            names[1]=s.nextInt();
-        }
+        // try (//inserting values to arrays 
+        // Scanner s = new Scanner(System.in)) {
+        //     names[0]=1; 
+        //     names[1]=s.nextInt();
+        // }
         //output from the array
         System.out.println(" arrray names is "+names[0]);
         System.out.println(" arrray names is "+names[1]);
