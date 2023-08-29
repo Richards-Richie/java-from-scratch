@@ -325,28 +325,44 @@ public class arrays {
     }
     public static void trappingRainWater1(){
         int []arr={4, 2, 0, 3, 2, 5};
-        //trapped water level=(waterlevel-barheight)*width;
-        //waterlevel=min(maxleftheight,maxrightheight)
-        int []mlh=new int[arr.length];
-        for(int i=0;i<mlh.length;i++){
-            if(i == 0){
-                mlh[i] = arr[i];
-            }else{
-                mlh[i]=Math.max(mlh[i-1],arr[i]);
-            }
-        }
-        int []mrh=new int[arr.length];
-        for(int i=mrh.length-1;i>=0;i--){
-            if(i== mrh.length-1){
-                mrh[i]=arr[arr.length-1];
-            }else{
-                mrh[i]=Math.max(mrh[i+1],arr[i]);
-            }
-        }
+        // //trapped water level=(waterlevel-barheight)*width;
+        // //waterlevel=min(maxleftheight,maxrightheight)
+        // int []mlh=new int[arr.length];
+        // for(int i=0;i<mlh.length;i++){
+        //     if(i == 0){
+        //         mlh[i] = arr[i];
+        //     }else{
+        //         mlh[i]=Math.max(mlh[i-1],arr[i]);
+        //     }
+        // }
+        // int []mrh=new int[arr.length];
+        // for(int i=mrh.length-1;i>=0;i--){
+        //     if(i== mrh.length-1){
+        //         mrh[i]=arr[arr.length-1];
+        //     }else{
+        //         mrh[i]=Math.max(mrh[i+1],arr[i]);
+        //     }
+        // }
+        // int twl=0;
+        // for(int i=0;i<arr.length;i++){
+        //     twl+=((Math.min(mlh[i],mrh[i]))-arr[i]);
+        Stack<Integer> s=new Stack<>();
         int twl=0;
         for(int i=0;i<arr.length;i++){
-            twl+=((Math.min(mlh[i],mrh[i]))-arr[i]);
+            int twl1=0;
+            while(s.size() >0 && arr[s.peek()] < arr[i]){
+                int rm=i;
+                int cur=s.pop();
+                if(s.size() == 0){
+                    break;
+                }int lm=s.peek();
+                int width=rm-lm-1;
+                twl1+=(Math.min(arr[rm],arr[lm])-arr[cur])*width;
+            }
+            s.push(i);
+            twl+=twl1;  
         }
+        
         System.out.println("trapped water level = "+twl);
     }
 }
