@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySearchTrees {
     static class Node{
         int val;
@@ -71,16 +74,49 @@ public class BinarySearchTrees {
         }
         return root;
     }
+    public static void print(Node root,int k1,int k2){
+        if(root == null){
+            return ;
+        }
+        if(root.val >= k1 && root.val <= k2){
+            print(root.left,k1,k2);
+            System.out.print(root.val+" ");
+            print(root.right,k1,k2);
+        }
+        else if(root.val > k2){
+            print(root.left,k1,k2);
+        }else{
+            print(root.right,k1,k2);
+        }
+    }
+    public static List<List<Integer>> rootToPath(Node root,List<Integer> ar,List<List<Integer>> ans){
+        if(root == null){
+            ans.add(ar);
+            System.out.println(ar);
+            return ans;
+        }
+        ar.add(root.val);
+        rootToPath(root.left,ar,ans);
+        rootToPath(root.right,ar,ans);
+        ans.remove(ans.size()-1);
+        return ans;
+    }
     public static void main(String[] args) {
-        int []arr={1,9,2,8,3,7,4,6,5,0};
+        int []arr={5,7,4,8,3,9,2,6,1,0};
         Node root=null;
         for(int i=0;i<arr.length;i++){
             root=insert(root,arr[i]);
         }
         //inorder(root);
         //System.out.println(search(root, 11));
-        root=delete(root,8);
-        inorder(root);
+        //root=delete(root,8);
+        //inorder(root);
+        //print(root,2,9);
+        List<Integer> ar=new ArrayList<Integer>();
+        List<List<Integer>> ans=new ArrayList<List<Integer>>();
+        ans=rootToPath(root,ar,ans);
+        System.out.println(ans);
+
     }
     
 }
