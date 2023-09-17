@@ -101,6 +101,38 @@ public class BinarySearchTrees {
         ans.remove(ans.size()-1);
         return ans;
     }
+    public static boolean isValidBst(Node root,Node min,Node max){
+        if(root == null){
+            return true;
+        }
+        if(min!=null && min.val>=root.val){
+            return false;
+        }else if(max!=null && max.val < root.val){
+            return false;
+        }else{
+            return isValidBst(root.left,min,root) && isValidBst(root.right,root,max);
+        }
+    }
+    public static Node mirrorBinary(Node root){
+        if(root == null){
+            return root;
+        }
+        if(root.left!=null  && root.right!=null){
+            Node temp=root.left;
+            root.left=root.right;
+            root.right=temp;
+        }
+        else if(root.left!=null){
+            root.right=root.left;
+            root.left=null;
+        }else if(root.right!=null){
+            root.left=root.right;
+            root.right=null;
+        }
+        mirrorBinary(root.left);
+        mirrorBinary(root.right);
+        return root;
+    }
     public static void main(String[] args) {
         int []arr={5,7,4,8,3,9,2,6,1,0};
         Node root=null;
@@ -112,11 +144,13 @@ public class BinarySearchTrees {
         //root=delete(root,8);
         //inorder(root);
         //print(root,2,9);
-        List<Integer> ar=new ArrayList<Integer>();
-        List<List<Integer>> ans=new ArrayList<List<Integer>>();
-        ans=rootToPath(root,ar,ans);
-        System.out.println(ans);
-
+        // List<Integer> ar=new ArrayList<Integer>();
+        // List<List<Integer>> ans=new ArrayList<List<Integer>>();
+        // ans=rootToPath(root,ar,ans);
+        // System.out.println(ans);
+        // System.out.println(isValidBst(root, null, null));
+        inorder(root);
+        inorder(mirrorBinary(root));
     }
     
 }
