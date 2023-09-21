@@ -37,10 +37,52 @@ public class Graphs {
         return ans;
     }
     public static void BFSTraversal(){
+        Queue<Integer> q=new LinkedList<>();
+        boolean []visited=new boolean[graph.length];
+        q.add(0);
+        while(!q.isEmpty()){
+            int cur=q.remove();
+            if(visited[cur]==false){
+                System.out.print(cur+" ");
+                visited[cur]=true;
+                for(int i=0;i<graph[cur].size();i++){
+                    q.add(graph[cur].get(i).destination);
+                }
+            }
+        }
+    }
+    public static void DFSTraversal(int cur,boolean[] visited){
 
+        System.out.print(cur+" ");
+        visited[cur]=true;
+        for(int i=0;i<graph[cur].size();i++){
+            Edge e=graph[cur].get(i);
+            if(!visited[e.destination]){
+                DFSTraversal(e.destination, visited);
+            }
+        }
+    }
+    public static boolean hasPath(int src,int dest,boolean[] visited){
+        if(src == dest){
+            return true;
+        }
+        visited[src]=true;
+        for(int i=0;i<graph[src].size();i++){
+            Edge e=graph[src].get(i);
+            if(!visited[e.destination] && hasPath(e.destination, dest, visited)){
+                return true;
+            }
+        }
+        return false;
     }
     public static void main(String[] args) {
         createEdge(4);
         getNeighbor();
+        System.out.println();
+        BFSTraversal();
+        System.out.println();
+        DFSTraversal(0, new boolean[4]);
+        System.out.println();
+        System.out.println(hasPath(0, 2, new boolean[4]));
     }
 }
